@@ -10,7 +10,7 @@ FROM authors a
 JOIN titleauthor ta on ta.au_id = a.au_id
 JOIN titles t on t.title_id = ta.title_id
 JOIN publishers p on p.pub_id = t.pub_id
-GROUP BY AUTHOR_ID
+GROUP BY AUTHOR_ID, p.pub_name
 ;
 
 create view suma as
@@ -19,6 +19,7 @@ FROM authors a
 JOIN titleauthor ta on ta.au_id = a.au_id
 JOIN titles t on t.title_id = ta.title_id
 JOIN publishers p on p.pub_id = t.pub_id
-GROUP BY AUTHOR_ID
+GROUP BY AUTHOR_ID, p.pub_name
 ;
+
 select sum(Title_count) from suma;
