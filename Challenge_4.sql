@@ -5,10 +5,11 @@ Note that the authors who have sold 0 titles should also appear in your output (
 Also order your results based on TOTAL from high to low.
 */
 
-SELECT a.au_id AUTHOR_ID, a.au_lname LAST_NAME, a.au_fname FIRST_NAME, count(t.title) as TOTAL
+SELECT a.au_id AUTHOR_ID, a.au_lname LAST_NAME, a.au_fname FIRST_NAME, ifnull(sum(s.qty),0) as TOTAL
 FROM authors a
 LEFT JOIN titleauthor ta on ta.au_id = a.au_id
 LEFT JOIN titles t on t.title_id = ta.title_id
+LEFT JOIN sales s on s.title_id = t.title_id
 GROUP BY AUTHOR_ID
 ORDER BY TOTAL DESC
 ;
