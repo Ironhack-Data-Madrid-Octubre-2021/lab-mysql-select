@@ -29,8 +29,4 @@ on c.title_id = d.title_id
 group by a.au_id
 order by sum(d.qty) desc
 
-select distinct a.au_id,a.au_fname,a.au_lname 
-from authors a, titles b, titleauthor c,sales d
-where a.au_id = c.au_id and b.title_id = c.title_id and d.title_id = c.title_id
 
-select distinct c.au_id from titleauthor c
